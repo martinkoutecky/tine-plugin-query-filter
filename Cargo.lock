@@ -88,7 +88,7 @@ dependencies = [
 
 [[package]]
 name = "tine-plugin-query-filter"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "tine-plugin-sdk",
 ]
