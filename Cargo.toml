@@ -1,0 +1,13 @@
+[package]
+name = "tine-plugin-query-filter"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+tine-plugin-sdk = { git = "https://github.com/martinkoutecky/tine", rev = "d73e866b44bff140c6f376d4a7659627c3484dad" }
