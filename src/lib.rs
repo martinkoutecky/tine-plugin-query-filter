@@ -4,7 +4,10 @@ const FILTER: &str = "state != \"DONE\" && state != \"CANCELED\" && state != \"C
 const LEGACY_FILTER_LINE: &str = "tine.filter:: status != \"done\"";
 
 fn is_query_view(raw: &str) -> bool {
-    raw.contains("{{query")
+    raw.lines().any(|line| {
+        let line = line.trim();
+        line.starts_with("{{query") && line.ends_with("}}")
+    })
         && raw
             .lines()
             .any(|line| matches!(line.trim(), "tine.view:: table" | "tine.view:: board"))
@@ -82,5 +85,6 @@ mod tests {
         assert!(is_query_view("{{query (task TODO)}}\ntine.view:: board"));
         assert!(!is_query_view("ordinary prose"));
         assert!(!is_query_view("{{query (task TODO)}}"));
+        assert!(!is_query_view("prose {{query (task TODO)}}\ntine.view:: table"));
     }
 }
